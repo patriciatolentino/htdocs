@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".alert.AnotherAlertActivity">
+
+
+    <Button
+        android:id="@+id/btnSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="42dp"
+        android:text="Send" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="256dp"
+        android:layout_height="159dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="145dp"
+        app:srcCompat="@android:color/background_light" />
+
+    <CheckBox
+        android:id="@+id/cbBackdoor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageView7"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="-145dp"
+        android:layout_marginEnd="64dp"
+        android:text="Backdoor Gate" />
+
+    <CheckBox
+        android:id="@+id/cbMFC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageView7"
+        android:layout_alignStart="@+id/imageView7"
+        android:layout_marginBottom="-145dp"
+        android:text="MFC Gate" />
+
+    <CheckBox
+        android:id="@+id/cbLRT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView7"
+        android:layout_toEndOf="@+id/btnSend"
+        android:text="LRT Gate" />
+
+    <CheckBox
+        android:id="@+id/cb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView7"
+        android:layout_centerHorizontal="true"
+        android:text="CheckBox" />
+
+    <CheckBox
+        android:id="@+id/cbMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imageView7"
+        android:layout_marginStart="44dp"
+        android:text="Main Exit" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:text="Safe Exits"
+        android:textSize="36sp" />
+
+    <EditText
+        android:id="@+id/txtFurther"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="102dp"
+        android:ems="10"
+        android:hint="Further Instruction/s"
+        android:inputType="textPersonName" />
+</RelativeLayout>

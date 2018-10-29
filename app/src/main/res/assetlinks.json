@@ -1,0 +1,25 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.example.dell.myapplication",
+    "sha256_cert_fingerprints":
+    ["B0:D3:11:FC:55:CB:0C:4D:79:70:76:A0:BD:37:14:A0:C6:F8:31:F5:AA:9B:5C:DB:61:19:79:DA:E6:F2:9D:13"]
+  }
+},
+{
+  "relation": ["delegate_permission/common.get_login_creds"],
+  "target": {
+    "namespace": "web",
+    "site": "https://sign-in.testing.com"
+  }
+},
+{
+  "relation": ["delegate_permission/common.get_login_creds"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.example.dell.myapplication",
+    "sha256_cert_fingerprints":
+    ["B0:D3:11:FC:55:CB:0C:4D:79:70:76:A0:BD:37:14:A0:C6:F8:31:F5:AA:9B:5C:DB:61:19:79:DA:E6:F2:9D:13"]
+  }
+}]

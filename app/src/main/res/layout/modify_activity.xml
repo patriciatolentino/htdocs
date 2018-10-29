@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.dell.myapplication.ModifyActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="300dp"
+            android:layout_height="250dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="67dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnChoose"
+            android:layout_width="138dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="200dp"
+            android:layout_marginStart="39dp"
+            android:text="Choose Image" />
+
+
+        <Button
+            android:id="@+id/btnUpload"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/radiogroup"
+            android:layout_alignTop="@+id/btnChoose"
+            android:enabled="false"
+            android:text="Upload Image" />
+
+
+        <EditText
+            android:id="@+id/txtID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/txtCalamityName"
+            android:layout_alignParentStart="true"
+            android:hint="id"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/txtCalamityName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="137dp"
+            android:hint="Calamity Name"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/txtDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnAdd"
+            android:layout_alignParentStart="true"
+            android:hint="Description"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioGroup
+            android:id="@+id/radiogroup"
+            android:layout_width="109dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="28dp">
+
+            <RadioButton
+                android:id="@+id/rbFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female" />
+
+            <RadioButton
+                android:id="@+id/rbMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="216dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnView"
+            android:layout_alignStart="@+id/btnView"
+            android:text="ADD" />
+
+        <Button
+            android:id="@+id/btnView"
+            android:layout_width="214dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp"
+            android:text="VIEW" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="152dp"
+            android:layout_marginTop="80dp"
+            app:srcCompat="@android:color/holo_blue_bright" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

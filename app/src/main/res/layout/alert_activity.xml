@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="94dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="114dp"
+        app:srcCompat="@drawable/active_shooter" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="94dp"
+        android:layout_height="100dp"
+        android:layout_alignTop="@+id/imageView12"
+        android:layout_toEndOf="@+id/imageView8"
+        app:srcCompat="@drawable/bomb_threat" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="94dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="22dp"
+        android:layout_toStartOf="@+id/imageView8"
+        app:srcCompat="@drawable/earthquake_img" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="94dp"
+        android:layout_height="100dp"
+        android:layout_alignTop="@+id/imageView10"
+        android:layout_toEndOf="@+id/imageView8"
+        app:srcCompat="@drawable/fire_img" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="94dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="170dp"
+        android:layout_toStartOf="@+id/imageView8"
+        app:srcCompat="@drawable/flood_img" />
+
+    <Button
+        android:id="@+id/btnAlert"
+        android:layout_width="181dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="21dp"
+        android:text="Alert" />
+
+    <CheckBox
+        android:id="@+id/cbEartquake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/imageView10"
+        android:layout_below="@+id/imageView10"
+        android:text="Earthquake" />
+
+    <CheckBox
+        android:id="@+id/cbFire"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView10"
+        android:layout_toEndOf="@+id/imageView8"
+        android:text="Fire" />
+
+    <CheckBox
+        android:id="@+id/cbFlood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/imageView10"
+        android:layout_marginBottom="202dp"
+        android:text="Flood" />
+
+    <CheckBox
+        android:id="@+id/cbBomb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageView8"
+        android:layout_toEndOf="@+id/imageView8"
+        android:text="Bomb Threat" />
+
+    <CheckBox
+        android:id="@+id/cbShooter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/imageView8"
+        android:layout_below="@+id/imageView8"
+        android:layout_marginTop="-114dp"
+        android:text="Active Shooter" />
+</RelativeLayout>

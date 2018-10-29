@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">My Application</string>
+
+
+    //location
+    <string-array name="map">
+        <item>Ground Floor</item>
+        <item>Benilde Building</item>
+        <item>Duerr Building</item>
+        <item>Mutien Building</item>
+        <item>Solomon Building</item>
+        <item>MFC Building</item>
+    </string-array>
+
+
+    //add instructions
+    <array name="instructions">
+        <item>Active Shooter</item>
+        <item>Earthquake</item>
+        <item>Bomb Threat</item>
+        <item>Flood</item>
+        <item>Fire</item>
+    </array>
+    <string name="title_activity_second">SecondActivity</string>
+    <string name="title_activity_message">Message</string>
+    <string name="title_activity_send_amsg">SendAMsg</string>
+    <string name="title_activity_msg">MsgActivity</string>
+    <string name="title_activity_optional_message">OptionalMessage</string>
+    <string name="title_activity_push_notif">PushNotif</string>
+    <string name="asset_statements" translatable="false">[{ \"include\": \"https://testing.com/.well-known/assetlinks.json\" }]</string>
+    <string name="title_activity_user">User</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pref_file">com.example.dell.myapplication.preference_file</string>
+    <string name="pre_login_status">com.example.dell.myapplication.preference_login_status</string>
+    <string name="pref_user_name">com.example.dell.myapplication.preference_user_name</string>
+
+    <string name="app_name2">NavBar</string>
+    <string name="Open">NavBar</string>
+    <string name="Close">NavBar</string>
+    <string name="title_activity_login">LoginActivity</string>
+</resources>

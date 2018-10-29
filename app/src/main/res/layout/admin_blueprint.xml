@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <ImageView
+        android:id="@+id/blueprint"
+        android:layout_width="318dp"
+        android:layout_height="230dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/blueprint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.077" />
+
+    <CheckBox
+        android:id="@+id/MFCExit"
+        android:layout_width="36dp"
+        android:layout_height="34dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:buttonTint="@android:color/black"
+        android:checked="false"
+        android:hint="MFCExit"
+        app:layout_constraintBottom_toBottomOf="@+id/blueprint"
+        app:layout_constraintEnd_toEndOf="@+id/blueprint"
+        app:layout_constraintHorizontal_bias="0.251"
+        app:layout_constraintStart_toStartOf="@+id/blueprint"
+        app:layout_constraintTop_toTopOf="@+id/blueprint"
+        app:layout_constraintVertical_bias="0.122" />
+
+    <CheckBox
+        android:id="@+id/backgateExit"
+        android:layout_width="34dp"
+        android:layout_height="31dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:buttonTint="@android:color/black"
+        android:checked="false"
+        android:hint="backgateExit"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/blueprint"
+        app:layout_constraintEnd_toEndOf="@+id/blueprint"
+        app:layout_constraintHorizontal_bias="0.716"
+        app:layout_constraintStart_toStartOf="@+id/blueprint"
+        app:layout_constraintTop_toTopOf="@+id/blueprint"
+        app:layout_constraintVertical_bias="0.136" />
+
+    <CheckBox
+        android:id="@+id/mainExit"
+        android:layout_width="32dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:buttonTint="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/blueprint"
+        app:layout_constraintEnd_toEndOf="@+id/blueprint"
+        app:layout_constraintStart_toStartOf="@+id/blueprint"
+        app:layout_constraintTop_toTopOf="@+id/blueprint"
+        app:layout_constraintVertical_bias="0.869" />
+
+    <CheckBox
+        android:id="@+id/mainGateExit"
+        android:layout_width="31dp"
+        android:layout_height="29dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:buttonTint="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/blueprint"
+        app:layout_constraintEnd_toEndOf="@+id/blueprint"
+        app:layout_constraintHorizontal_bias="0.638"
+        app:layout_constraintStart_toStartOf="@+id/blueprint"
+        app:layout_constraintTop_toTopOf="@+id/blueprint"
+        app:layout_constraintVertical_bias="0.864" />
+
+    <CheckBox
+        android:id="@+id/LRTExit"
+        android:layout_width="32dp"
+        android:layout_height="28dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:buttonTint="@android:color/black"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/blueprint"
+        app:layout_constraintEnd_toEndOf="@+id/blueprint"
+        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintStart_toStartOf="@+id/blueprint"
+        app:layout_constraintTop_toTopOf="@+id/blueprint"
+        app:layout_constraintVertical_bias="0.86" />
+
+    <Button
+        android:id="@+id/btnSendToUsers"
+        android:layout_width="190dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="SEND"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.984" />
+
+    <TextView
+        android:id="@+id/select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Select the safest exits"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/blueprint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="MFC Exit"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/blueprint"
+        app:layout_constraintEnd_toEndOf="@+id/blueprint"
+        app:layout_constraintHorizontal_bias="0.306"
+        app:layout_constraintStart_toStartOf="@+id/blueprint"
+        app:layout_constraintTop_toTopOf="@+id/MFCExit"
+        app:layout_constraintVertical_bias="0.113" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Backgate Exit"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/blueprint"
+        app:layout_constraintEnd_toEndOf="@+id/blueprint"
+        app:layout_constraintHorizontal_bias="0.806"
+        app:layout_constraintStart_toStartOf="@+id/blueprint"
+        app:layout_constraintTop_toTopOf="@+id/backgateExit"
+        app:layout_constraintVertical_bias="0.096" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Exit1"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/mainExit"
+        app:layout_constraintEnd_toEndOf="@+id/blueprint"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="@+id/blueprint"
+        app:layout_constraintTop_toTopOf="@+id/blueprint"
+        app:layout_constraintVertical_bias="0.867" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Exit 2"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/mainGateExit"
+        app:layout_constraintEnd_toEndOf="@+id/blueprint"
+        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintStart_toStartOf="@+id/blueprint"
+        app:layout_constraintTop_toTopOf="@+id/blueprint"
+        app:layout_constraintVertical_bias="0.878" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="47dp"
+        android:layout_height="17dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="LRT Exit"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/LRTExit"
+        app:layout_constraintEnd_toEndOf="@+id/blueprint"
+        app:layout_constraintHorizontal_bias="0.929"
+        app:layout_constraintStart_toStartOf="@+id/blueprint"
+        app:layout_constraintTop_toTopOf="@+id/blueprint"
+        app:layout_constraintVertical_bias="0.883" />
+
+
+</android.support.constraint.ConstraintLayout>

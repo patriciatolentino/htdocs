@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="signals">
+        <item>Active Shooter</item>
+        <item>Earthquake</item>
+        <item>Bomb Threat</item>
+        <item>Flood</item>
+        <item>Fire</item>
+    </string-array>
+</resources>
