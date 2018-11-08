@@ -16,7 +16,6 @@ import com.example.dell.myapplication.R;
 import com.example.dell.myapplication.adapter.AlertAdapter;
 import com.example.dell.myapplication.api.RegisterAPI;
 import com.example.dell.myapplication.model.Crud;
-import com.example.dell.myapplication.model.Value;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +26,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ViewAlertActivity extends AppCompatActivity {
+public class ViewAlertActivity extends AppCompatActivity  {
 
     private RecyclerView recyclerView;
     private AlertAdapter adapter;
@@ -37,6 +36,8 @@ public class ViewAlertActivity extends AppCompatActivity {
     private ImageView image;
 
     private List<Crud> crud = new ArrayList<>();
+    ArrayList<String> selection = new ArrayList<String>();
+    public static List<Crud> alertitems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,10 @@ public class ViewAlertActivity extends AppCompatActivity {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+
         loadDataCrud();
+
         buttonOK = (Button) findViewById(R.id.btnOk);
         buttonOK.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,30 +78,29 @@ public class ViewAlertActivity extends AppCompatActivity {
                     .build();
             RegisterAPI api = retrofit.create(RegisterAPI.class);
 
-            Call<Value> call = api.sendAlert();
-            call.enqueue(new Callback<Value>() {
+            Call<Crud> call = api.sendAlert();
+            call.enqueue(new Callback<Crud>() {
                 @Override
-                public void onResponse(Call<Value> call, Response<Value> response) {
-                    String value = response.body().getValue();
+                public void onResponse(Call<Crud> call, Response<Crud> response) {
 
                     if (response.isSuccessful()) {
                         crud = response.body().getResult();
-                        System.out.println("nadine" + response.body().getResult());
                         adapter = new AlertAdapter(crud, ViewAlertActivity.this);
                         recyclerView.setAdapter(adapter);
+
+                        if (response.body().getId() == ("1")) {
+                            image.setImageResource(R.drawable.earthquake_img);
+                            System.out.println("CALAMITY  " + response.body().getId());
+                        }
+
+
+                    }
                     }
 
-
-
-
-                }
-
                 @Override
-                public void onFailure(Call<Value> call, Throwable t) {
+                public void onFailure(Call<Crud> call, Throwable t) {
 
-                    System.out.println("kahit ano " + t.getMessage());
                 }
             });
-
     }
 }

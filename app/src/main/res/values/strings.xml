@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">BEAP</string>
 
 
     //location
@@ -40,4 +40,12 @@
     <string name="Open">NavBar</string>
     <string name="Close">NavBar</string>
     <string name="title_activity_login">LoginActivity</string>
+
+    <string name="app_name3">NavBar2</string>
+    <string name="Open2">NavBar2</string>
+    <string name="Close2">NavBar2</string>
+    <string name="title_activity_login2">LoginActivity</string>
+
+
+
 </resources>

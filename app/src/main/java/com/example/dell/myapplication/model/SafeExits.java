@@ -62,4 +62,6 @@ public class SafeExits {
     public void setValue(int value) {
         this.value = value;
     }
+
+
 }

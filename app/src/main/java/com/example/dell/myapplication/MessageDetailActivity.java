@@ -1,5 +1,7 @@
 package com.example.dell.myapplication;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -32,6 +34,8 @@ public class MessageDetailActivity extends AppCompatActivity {
     private Button buttonUpdate;
     private List<MessageDetails> crud = new ArrayList<>();
     private int receiverID;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +53,14 @@ public class MessageDetailActivity extends AppCompatActivity {
         buttonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MessageDetailActivity.this);
+                alertDialogBuilder.setTitle("Warning");
+                alertDialogBuilder
+                        .setMessage("Do you wish to continue?")
+                        .setCancelable(false)
+                        .setPositiveButton("Update", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
                 for(int i =0; i<MessageDetailsAdapter.listItems.size(); i++){
                     if(MessageDetailsAdapter.listItems.get(i).getSelected()){
 
@@ -75,12 +87,21 @@ public class MessageDetailActivity extends AppCompatActivity {
                             public void onFailure(Call<Message> call, Throwable t) {
                                 t.printStackTrace();
 
-                                Toast.makeText(MessageDetailActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MessageDetailActivity.this, "Updated (error)", Toast.LENGTH_SHORT).show();
                             }
                         });
 
                     }
                 }
+            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
             }
         });
         loadDataCrud();

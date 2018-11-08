@@ -4,15 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".User">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="47dp" />
+    tools:context=".alert.ViewAlertActivity">
 
     <Button
         android:id="@+id/btnOk"
@@ -29,11 +21,19 @@
     <ImageView
         android:id="@+id/imgCalamity"
         android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_height="93dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="137dp"
+        android:layout_marginTop="53dp"
         app:srcCompat="@android:color/background_light" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="212dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="137dp" />
 
 
 </RelativeLayout>

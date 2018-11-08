@@ -27,6 +27,7 @@ public interface RegisterAPI {
     @GET("view.php")
     Call<Value> view();
 
+
     @FormUrlEncoded
     @POST("search.php")
     Call  <Value> search(@Field("search") String search);
@@ -61,7 +62,7 @@ public interface RegisterAPI {
     Call<Value> uploadImage(@Field("calamityName") String calamityName,
                            @Field("image") String image);
     @GET("alert/alert.php")
-    Call<Value> sendAlert();
+    Call<Crud> sendAlert();
 
     @FormUrlEncoded
     @POST("alert/alertmessage.php")

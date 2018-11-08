@@ -3,15 +3,15 @@ package com.example.dell.myapplication.model;
 public class Message {
     public int id;
     public int receiverID;
-    public int senderID;
+    public int userID;
     public String message;
     public String status;
     
 
-    public Message(int receiverID, int senderID, String message){
+    public Message(int receiverID, int userID, String message){
 
         this.receiverID = receiverID;
-        this.senderID = senderID;
+        this.userID = userID;
         this.message = message;
 
     }
@@ -32,11 +32,11 @@ public class Message {
     }
 
     public int getSenderID() {
-        return senderID;
+        return userID;
     }
 
     public void setSenderID(int senderID) {
-        this.senderID = senderID;
+        this.userID = userID;
     }
 
     public String getMessage() {

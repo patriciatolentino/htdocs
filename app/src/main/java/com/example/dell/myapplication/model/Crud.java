@@ -2,7 +2,10 @@ package com.example.dell.myapplication.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Crud {
+    List<Crud> result;
 
     public int image;
 
@@ -17,6 +20,9 @@ public class Crud {
     String something;
     String path;
 
+    public List<Crud> getResult() {
+        return result;
+    }
 
     public String getId() {
 

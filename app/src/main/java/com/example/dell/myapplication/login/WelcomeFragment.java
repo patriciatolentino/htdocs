@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.example.dell.myapplication.MainActivity;
 import com.example.dell.myapplication.MessageDetailActivity;
-import com.example.dell.myapplication.ModifyActivity;
 import com.example.dell.myapplication.R;
 import com.example.dell.myapplication.alert.AlertActivity;
 
@@ -29,6 +28,11 @@ public class WelcomeFragment extends Fragment {
     private Button btnAlert;
     private Button btnModify;
     private Button btnMessages;
+
+
+
+
+
     OnLogoutListener logoutListener;
     public interface  OnLogoutListener {
         public void logoutPerformed();
@@ -41,6 +45,8 @@ public class WelcomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
 
 
         // Inflate the layout for this fragment
@@ -63,15 +69,6 @@ public class WelcomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent viewdata = new Intent(getActivity(), AlertActivity.class);
-                startActivity(viewdata);
-            }
-        });
-
-        btnModify = view.findViewById(R.id.btnModify);
-        btnModify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent viewdata = new Intent (getActivity(), ModifyActivity.class);
                 startActivity(viewdata);
             }
         });

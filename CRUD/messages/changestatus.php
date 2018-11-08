@@ -5,11 +5,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$response = array();
 	//crud data
 	$id = $_POST['id'];
-	$receiverID = $_POST['receiverID'];
+	$senderID = $_POST['senderID'];
 	
 
 
-	$sql = "UPDATE messages SET status= '1', receiverID='$receiverID' WHERE id = '$id'";
+	$sql = "UPDATE messages SET status= '1', senderID='$senderID' WHERE id = '$id'";
 	$check = mysqli_fetch_array(mysqli_query($con, $sql));
 
 

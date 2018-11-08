@@ -1,7 +1,6 @@
 package com.example.dell.myapplication.login;
 
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.dell.myapplication.ApiClient;
@@ -11,7 +10,7 @@ import com.example.dell.myapplication.R;
 public class MainActivity extends AppCompatActivity implements LoginFragment.OnLoginFormActivityListener,
         WelcomeFragment.OnLogoutListener {
 
-    private DrawerLayout drawer;
+
 
     public static PrefConfig prefConfig;
     public static ApiInterface apiInterface;
@@ -20,6 +19,8 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         prefConfig = new PrefConfig(this);
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
@@ -56,4 +57,5 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnL
         prefConfig.writeName("User");
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LoginFragment()).commit();
     }
+
 }

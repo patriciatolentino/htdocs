@@ -1,5 +1,7 @@
 package com.example.dell.myapplication;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,10 +12,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.dell.myapplication.login.WelcomeFragment;
+
 public class UserActivity extends AppCompatActivity {
 
     private DrawerLayout dl;
     private ActionBarDrawerToggle abdt;
+
+    WelcomeFragment.OnLogoutListener logoutListener;
+    public interface  OnLogoutListener {
+        public void logoutPerformed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +53,8 @@ public class UserActivity extends AppCompatActivity {
                 } else if (id == R.id.optmsg) {
                     Intent view = new Intent (UserActivity.this, OptionalMessage.class);
                     startActivity(view);
-                } else if (id == R.id.settings){
-                    Intent view = new Intent (UserActivity.this, SettingsActivity.class);
-                    startActivity(view);
                 } else if (id == R.id.logout) {
-
-
+                    logoutListener.logoutPerformed();
                 }
                 return true;
             }
@@ -60,5 +65,12 @@ public class UserActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         return abdt.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
 
+    }
+
+    public void onAttach(Context context) {
+
+
+        Activity activity = (Activity) context;
+        logoutListener = (WelcomeFragment.OnLogoutListener) activity;
     }
 }

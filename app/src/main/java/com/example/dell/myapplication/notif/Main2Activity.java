@@ -18,7 +18,6 @@ public class Main2Activity extends AppCompatActivity {
     private EditText txtTitle, txtMessage;
     private Button btn1, btn2;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

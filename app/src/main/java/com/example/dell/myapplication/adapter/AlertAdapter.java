@@ -18,8 +18,6 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
 
     public static List<Crud> alertitems;
     private Context context;
-    public ImageView imageView;
-
 
     public AlertAdapter(List<Crud> alertitems, Context context) {
         this.alertitems = alertitems;
@@ -39,12 +37,9 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
     public void onBindViewHolder(final AlertAdapter.ViewHolder holder, final int position) {
         final Crud listItem = alertitems.get(position);
 
-        Crud all = alertitems.get(position);
         holder.txtCalamityName.setText(listItem.getCalamityName());
         holder.txtDescription.setText(listItem.getDescription());
-        holder.imageView.setImageResource(all.image);
-
-
+        holder.image.setImageResource(listItem.image);
     }
 
 
@@ -57,7 +52,7 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
 
         public TextView txtCalamityName;
         public TextView txtDescription;
-        public ImageView imageView;
+        public ImageView image;
 
 
         public ViewHolder(View itemView) {
@@ -65,8 +60,8 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
 
             txtCalamityName = itemView.findViewById(R.id.txtCalamityName);
             txtDescription = itemView.findViewById(R.id.txtDescription);
-            imageView = itemView.findViewById(R.id.imgCalamity);
+            image = itemView.findViewById(R.id.imgCalamity);
 
         }
-    }
+}
 }

@@ -1,5 +1,7 @@
 package com.example.dell.myapplication;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.dell.myapplication.api.RegisterAPI;
+import com.example.dell.myapplication.login.WelcomeFragment;
 import com.example.dell.myapplication.model.Message;
 
 import retrofit2.Call;
@@ -31,6 +34,11 @@ public class OptionalMessage extends UserActivity {
 
     private DrawerLayout dl;
     private ActionBarDrawerToggle abdt;
+
+    WelcomeFragment.OnLogoutListener logoutListener;
+    public interface  OnLogoutListener {
+        public void logoutPerformed();
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,11 +83,8 @@ public class OptionalMessage extends UserActivity {
                 } else if (id == R.id.optmsg) {
 
                     Toast.makeText(OptionalMessage.this,"Optional Message",Toast.LENGTH_SHORT).show();
-                } else if (id == R.id.settings){
-                    Intent view = new Intent (OptionalMessage.this, SettingsActivity.class);
-                    startActivity(view);
-                } else if (id == R.id.logout) {
-
+                }  else if (id == R.id.logout) {
+                    logoutListener.logoutPerformed();
 
                 }
                 return true;
@@ -129,6 +134,13 @@ public class OptionalMessage extends UserActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         return abdt.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
 
+    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        Activity activity = (Activity) context;
+        logoutListener = (WelcomeFragment.OnLogoutListener) activity;
     }
     }
 

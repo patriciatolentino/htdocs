@@ -74,7 +74,7 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
             txtCalamityName = itemView.findViewById(R.id.txtCalamityName);
             txtDescription = itemView.findViewById(R.id.txtDescription);
             txtSomething = itemView.findViewById(R.id.txtSomething);
-          //  imageView = itemView.findViewById(R.id.imageView);
+             ///image = itemView.findViewById(R.drawable.earthquake_img);
 
 
              ButterKnife.bind(this, itemView);

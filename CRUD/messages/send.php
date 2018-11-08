@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
 
 
 	$sql =  "INSERT INTO messages (senderID, receiverID, message, status, created_at) 
-		VALUES ('$senderID','$receiverID', '$message', '0', '$date')";
+		VALUES ('$senderID', $receiverID, '$message', '0', '$date')";
 
 	if(mysqli_query($con, $sql)) {
 			$response["value"] = 1;

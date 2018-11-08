@@ -2,6 +2,7 @@ package com.example.dell.myapplication.login;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.dell.myapplication.MainActivity;
 import com.example.dell.myapplication.R;
+import com.example.dell.myapplication.UserActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,9 +30,11 @@ import retrofit2.Response;
  */
 public class LoginFragment extends Fragment {
 
+
     private EditText UserName, UserPassword;
     private Button btnLogin;
     OnLoginFormActivityListener loginFormActivityListener;
+    String userType;
 
     public  interface OnLoginFormActivityListener
     {
@@ -66,11 +70,10 @@ public class LoginFragment extends Fragment {
         super.onAttach(context);
         Activity activity =  (Activity )context;
         loginFormActivityListener = (OnLoginFormActivityListener) activity;
-
     }
 
     private void performLogin() {
-        String username = UserName.getText().toString();
+        final String username = UserName.getText().toString();
         String password = UserPassword.getText().toString();
 
         Call<User1> call = MainActivity.apiInterface.performUserLogin(username, password);
@@ -79,36 +82,67 @@ public class LoginFragment extends Fragment {
             public void onResponse(Call<User1> call, Response<User1> response) {
                 if(response.body().getResponse().equals("ok")){
 
-                 // MainActivity.prefConfig.writeLoginStatus(true);
+                    Integer value = response.body().getUserType();
+
+                    String userType = String.valueOf(response.body().getUserType());
+                    SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putInt("userType", response.body().getUserType());
+                    editor.apply();
+
+                  /*  if (response.body().getUserType() == 1) {
+                        FragmentManager fm = getFragmentManager();
+                        FragmentTransaction ft = fm.beginTransaction();
+                        WelcomeFragment llf = new WelcomeFragment();
+                        ft.replace(R.id.fragment_container, llf);
+                        ft.commit();
+
+                    } else if (value == 0) {
+                        Intent intent2 = new Intent(getActivity(), UserActivity.class);
+                        startActivity(intent2);
+                    }
+                    */
+
+                    System.out.println("NADINE1  " + response.body().getName());
+                    System.out.println("NADINE2  " + response.body().getUserType());
+                    System.out.println("NADINE3  " + response.body().getId());
+
+                    // MainActivity.prefConfig.writeLoginStatus(true);
                    String id  =  String.valueOf(response.body().getId());
                   // loginFormActivityListener.performLogin(id);
 
                     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putInt("ID", response.body().getId());
-                    editor.apply();
-                    System.out.println("TOLENTINO" + response.body().getId());
+                    SharedPreferences.Editor editor2 = prefs.edit();
+                    editor2.putInt("ID", response.body().getId());
+                    editor2.apply();
 
-                    //Intent intent = new Intent(getActivity(), OptionalMessage.class);
-                    //startActivity(intent);
+                   if (response.body().getId() == 1) {
+                        FragmentManager fm = getFragmentManager();
+                        FragmentTransaction ft = fm.beginTransaction();
+                        WelcomeFragment llf = new WelcomeFragment();
+                        ft.replace(R.id.fragment_container, llf);
+                        ft.commit();
 
-                    FragmentManager fm = getFragmentManager();
-                    FragmentTransaction ft = fm.beginTransaction();
-                    WelcomeFragment llf = new WelcomeFragment();
-                    ft.replace(R.id.fragment_container, llf);
-                    ft.commit();
+                    } else if (response.body().getId() >= 2) {
+                        Intent intent2 = new Intent(getActivity(), UserActivity.class);
+                        startActivity(intent2);
+                    }
+
+                    System.out.println("NADINE3  " + response.body().getId());
+
+
+
                     Toast.makeText(getContext(),"SUCCESS", Toast.LENGTH_SHORT).show();
+
 
                 }else{
                     MainActivity.prefConfig.displpayToast("Login Failed");
                     Toast.makeText(getContext(),response.body().getResponse(), Toast.LENGTH_SHORT).show();
                 }
-
             }
 
             @Override
             public void onFailure(Call<User1> call, Throwable t) {
-                System.out.println("pat123  " + t.getMessage());
                 Toast.makeText(getContext(),t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

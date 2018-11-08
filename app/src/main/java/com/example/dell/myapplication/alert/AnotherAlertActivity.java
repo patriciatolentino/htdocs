@@ -1,6 +1,9 @@
 package com.example.dell.myapplication.alert;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
@@ -35,13 +38,19 @@ public class AnotherAlertActivity extends AppCompatActivity {
     private NotificationManagerCompat notificationManager;
     private static final String TAG = "AdminBlueprint";
     String check;
+   private int userID;
     CheckBox MFCExit, backgateExit, mainExit, mainGateExit, LRTExit;
-    Button btnSendToUsers;
+    Button btnSendToUsers, btnUncheck;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_blueprint);
+
+       /* SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(AnotherAlertActivity.this);
+        userID = prefs.getInt("ID", 0);
+        */
 
         notificationManager = NotificationManagerCompat.from(this);
         setTitle("Safe Exits - Blueprint");
@@ -52,27 +61,59 @@ public class AnotherAlertActivity extends AppCompatActivity {
         mainGateExit = (CheckBox) findViewById(R.id.mainGateExit);
         LRTExit = (CheckBox) findViewById(R.id.LRTExit);
 
+
+        btnUncheck = (Button) findViewById(R.id.btnUncheck);
+        btnUncheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnUncheck();
+            }
+        });
+
         btnSendToUsers = (Button) findViewById(R.id.btnSendToUsers);
         btnSendToUsers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-               Intent i = new Intent(AnotherAlertActivity.this, ViewAnotherAlertActivity.class);
-               startActivity(i);
-
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(AnotherAlertActivity.this);
+                alertDialogBuilder.setTitle("Warning");
+                alertDialogBuilder
+                        .setMessage("Do you wish to continue?")
+                        .setCancelable(false)
+                        .setPositiveButton("Alert", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
                 sendNotif();
-                //JUST TO CHECK KUNG NAPAPASA
-                //PUSH NOTIF HERE
+                Toast.makeText(AnotherAlertActivity.this, "Alert sent!", Toast.LENGTH_SHORT).show();
+
+
             }
 
+        })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
         });
 
         getExits();
 
+    }
+
+    public void btnUncheck() {
+        MFCExit.setChecked(false);
+        backgateExit.setChecked(false);
+        mainExit.setChecked(false);
+        mainGateExit.setChecked(false);
+        LRTExit.setChecked(false);
 
     }
 
     public void getExits() {
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiClient.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -128,7 +169,6 @@ public class AnotherAlertActivity extends AppCompatActivity {
                             LRTExit.setChecked(true);
                         }
                         LRTExit.setOnCheckedChangeListener(checkListener);
-
                     }
 
                     Log.d("responsebody ", String.valueOf(value.getiStatus()));
@@ -193,6 +233,7 @@ public class AnotherAlertActivity extends AppCompatActivity {
                 .setAutoCancel(true)
                 .setOnlyAlertOnce(true)
                 .setVibrate(v)
+                .setLights(0xff00ff00, 300, 100)
                 .addAction(R.mipmap.ic_launcher, "Toast",  actionIntent)
                 .build();
 
