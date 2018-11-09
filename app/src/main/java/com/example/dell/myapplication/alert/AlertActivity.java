@@ -1,11 +1,14 @@
 package com.example.dell.myapplication.alert;
 
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -14,9 +17,11 @@ import android.widget.Toast;
 
 import com.example.dell.myapplication.ApiClient;
 import com.example.dell.myapplication.R;
+import com.example.dell.myapplication.UsersActivity;
 import com.example.dell.myapplication.adapter.AlertAdapter;
 import com.example.dell.myapplication.api.RegisterAPI;
 import com.example.dell.myapplication.model.Value;
+import com.example.dell.myapplication.notif.Notification;
 
 import java.util.ArrayList;
 
@@ -30,6 +35,8 @@ public class AlertActivity extends AppCompatActivity {
 
     private AlertAdapter viewAlertAdapter;
 
+    private NotificationManagerCompat notificationManager;
+
     private CheckBox CBearthquake, CBfire, CBflood, CBbomb, CBshooter;
     private Button buttonAlert;
     private int userID;
@@ -40,6 +47,9 @@ public class AlertActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alert_activity);
+
+
+        notificationManager = NotificationManagerCompat.from(this);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(AlertActivity.this);
         userID = prefs.getInt("ID", 0);
@@ -61,7 +71,7 @@ public class AlertActivity extends AppCompatActivity {
                         .setPositiveButton("Alert", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
+                                sendNotif();
                 for(int i=0; i<selection.size(); i++) {
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(ApiClient.BASE_URL)
@@ -105,12 +115,10 @@ public class AlertActivity extends AppCompatActivity {
                 {
                     selection.add("1");
                 }else{
-
                     selection.remove("1");
                 }
             }
         });
-
         CBfire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,6 +181,37 @@ public class AlertActivity extends AppCompatActivity {
 
         }
         });
+
+    }
+    public void sendNotif() {
+
+        long[] v = {500,1000};
+
+        Intent activityIntent = new Intent(this, ViewAlertActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(this,
+                0, activityIntent, 0);
+
+        Intent broadcastIntent = new Intent (this, UsersActivity.class);
+
+        broadcastIntent.putExtra("toastMessage", "There is a calamity happening");
+        PendingIntent actionIntent = PendingIntent.getBroadcast (this, 0,
+                broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        android.app.Notification notification =  new NotificationCompat.Builder(this, Notification.CHANNEL_1_ID)
+                .setSmallIcon(R.drawable.ic_looks_one_black_24dp)
+                .setContentTitle("Alert")
+                .setContentText("There is a calamity happening!")
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .setContentIntent(contentIntent)
+                .setAutoCancel(true)
+                .setOnlyAlertOnce(true)
+                .setVibrate(v)
+                .setLights(0xff00ff00, 300, 100)
+                .addAction(R.mipmap.ic_launcher, "Toast",  actionIntent)
+                .build();
+
+        notificationManager.notify(2, notification);
     }
 }
 

@@ -87,10 +87,10 @@ public class ViewAlertActivity extends AppCompatActivity  {
                         crud = response.body().getResult();
                         adapter = new AlertAdapter(crud, ViewAlertActivity.this);
                         recyclerView.setAdapter(adapter);
-
                         if (response.body().getId() == ("1")) {
-                            image.setImageResource(R.drawable.earthquake_img);
+                            image.setImageResource(R.drawable.earthquake);
                             System.out.println("CALAMITY  " + response.body().getId());
+
                         }
 
 

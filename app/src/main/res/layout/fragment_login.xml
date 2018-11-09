@@ -45,12 +45,13 @@
         android:text="BEAP" />
 
     <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="200dp"
-        android:layout_height="207dp"
-        android:layout_above="@+id/textView3"
+        android:id="@+id/imageView2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/map_solomon" />
+        android:layout_marginTop="115dp"
+        app:srcCompat="@drawable/logo" />
 
 
 </RelativeLayout>

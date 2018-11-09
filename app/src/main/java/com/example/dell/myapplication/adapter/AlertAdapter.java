@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dell.myapplication.R;
@@ -39,7 +38,7 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
 
         holder.txtCalamityName.setText(listItem.getCalamityName());
         holder.txtDescription.setText(listItem.getDescription());
-        holder.image.setImageResource(listItem.image);
+
     }
 
 
@@ -52,7 +51,7 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
 
         public TextView txtCalamityName;
         public TextView txtDescription;
-        public ImageView image;
+
 
 
         public ViewHolder(View itemView) {
@@ -60,7 +59,7 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
 
             txtCalamityName = itemView.findViewById(R.id.txtCalamityName);
             txtDescription = itemView.findViewById(R.id.txtDescription);
-            image = itemView.findViewById(R.id.imgCalamity);
+
 
         }
 }

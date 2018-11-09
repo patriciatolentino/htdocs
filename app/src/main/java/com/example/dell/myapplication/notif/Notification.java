@@ -20,6 +20,7 @@ public class Notification extends Application {
     private void createNotificationChannels() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         NotificationChannel channel1 = new NotificationChannel(
+
                 CHANNEL_1_ID,
                 "Channel 1",
                 NotificationManager.IMPORTANCE_HIGH

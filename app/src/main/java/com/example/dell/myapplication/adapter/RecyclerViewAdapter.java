@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dell.myapplication.R;
-import com.example.dell.myapplication.UpdateActivity;
+import com.example.dell.myapplication.crud.UpdateActivity;
 import com.example.dell.myapplication.model.Crud;
 
 import java.util.List;

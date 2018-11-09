@@ -22,11 +22,19 @@ public class SafeExits {
     private int value;
 
 
-    public SafeExits(int exitID, String exitName, int iStatus)
+
+    @SerializedName("instruction")
+    @Expose
+    private String instruction;
+
+
+
+    public SafeExits(int exitID, String exitName, int iStatus, String instruction)
     {
         this.exitID = exitID;
         this.exitName = exitName;
         this.iStatus = iStatus;
+        this.instruction = instruction;
     }
 
 
@@ -61,6 +69,14 @@ public class SafeExits {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    public String getInstruction() {
+        return instruction;
+    }
+
+    public void setInstruction(String instruction) {
+        this.instruction = instruction;
     }
 
 

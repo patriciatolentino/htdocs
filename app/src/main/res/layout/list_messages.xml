@@ -24,20 +24,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" : "
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/black" />
 
                 <TextView
                     android:id="@+id/txtName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"  />
+                    android:textColor="@android:color/black"  />
             </TableRow>
 
             <TableRow>
@@ -46,20 +46,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Message"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" : "
-                    android:textColor="@android:color/white"  />
+                    android:textColor="@android:color/black"  />
 
                 <TextView
                     android:id="@+id/txtMsg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"  />
+                    android:textColor="@android:color/black"  />
 
                 <CheckBox
                     android:id="@+id/checkBox"

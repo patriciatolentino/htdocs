@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.example.dell.myapplication.MainActivity;
 import com.example.dell.myapplication.R;
-import com.example.dell.myapplication.UserActivity;
+import com.example.dell.myapplication.UsersActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,7 +54,6 @@ public class LoginFragment extends Fragment {
         UserName = view.findViewById(R.id.username);
         UserPassword = view.findViewById(R.id.password);
         btnLogin = view.findViewById(R.id.btnLogIn);
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,7 +123,7 @@ public class LoginFragment extends Fragment {
                         ft.commit();
 
                     } else if (response.body().getId() >= 2) {
-                        Intent intent2 = new Intent(getActivity(), UserActivity.class);
+                        Intent intent2 = new Intent(getActivity(), UsersActivity.class);
                         startActivity(intent2);
                     }
 

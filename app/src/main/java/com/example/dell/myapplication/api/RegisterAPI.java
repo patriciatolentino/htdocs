@@ -4,6 +4,7 @@ package com.example.dell.myapplication.api;
 import com.example.dell.myapplication.model.Crud;
 import com.example.dell.myapplication.model.Message;
 import com.example.dell.myapplication.model.SafeExits;
+import com.example.dell.myapplication.model.Users;
 import com.example.dell.myapplication.model.Value;
 
 import java.util.List;
@@ -78,4 +79,16 @@ public interface RegisterAPI {
     @POST("upd.php") //admin
     Call<ResponseBody> updateExit(@Field("exitID") int exitID,
                                   @Field("iStatus") int iStatus);
+
+    @POST()
+    Call<Users> sendNotif();
+
+    @Headers("content-type:application/json")
+    @GET("get.php/") //message
+    Call<List<SafeExits>> getMessage();
+
+    @FormUrlEncoded
+    @POST("ins.php/") //message
+    Call<String> sendMessage(@Field("exitID") int exitID,
+                             @Field("instruction") String instruction);
 }

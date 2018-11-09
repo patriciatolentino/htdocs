@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.dell.myapplication.ApiClient;
@@ -23,6 +24,7 @@ import com.example.dell.myapplication.model.SafeExits;
 import com.example.dell.myapplication.notif.Notification;
 import com.example.dell.myapplication.notif.NotificationReceiver;
 
+import java.io.IOException;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -38,7 +40,9 @@ public class AnotherAlertActivity extends AppCompatActivity {
     private NotificationManagerCompat notificationManager;
     private static final String TAG = "AdminBlueprint";
     String check;
-   private int userID;
+    private int userID;
+    EditText instruction;
+
     CheckBox MFCExit, backgateExit, mainExit, mainGateExit, LRTExit;
     Button btnSendToUsers, btnUncheck;
 
@@ -61,6 +65,7 @@ public class AnotherAlertActivity extends AppCompatActivity {
         mainGateExit = (CheckBox) findViewById(R.id.mainGateExit);
         LRTExit = (CheckBox) findViewById(R.id.LRTExit);
 
+        instruction = (EditText) findViewById(R.id.instruc1);
 
         btnUncheck = (Button) findViewById(R.id.btnUncheck);
         btnUncheck.setOnClickListener(new View.OnClickListener() {
@@ -82,26 +87,35 @@ public class AnotherAlertActivity extends AppCompatActivity {
                         .setPositiveButton("Alert", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                sendNotif();
-                Toast.makeText(AnotherAlertActivity.this, "Alert sent!", Toast.LENGTH_SHORT).show();
+
+                                String ins = instruction.getText().toString();
+                                try {
+                                    setInstruction(1, ins);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                sendNotif();
+                                Toast.makeText(AnotherAlertActivity.this, "Alert sent!", Toast.LENGTH_SHORT).show();
 
 
+                            }
+
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
             }
-
-        })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-    }
         });
 
+        instruct();
         getExits();
 
     }
+
 
     public void btnUncheck() {
         MFCExit.setChecked(false);
@@ -211,19 +225,22 @@ public class AnotherAlertActivity extends AppCompatActivity {
         });
     }
 
+
     public void sendNotif() {
-        long[] v = {500,1000};
+
+
+        long[] v = {500, 1000};
 
         Intent activityIntent = new Intent(this, ViewAlertActivity.class);
         PendingIntent contentIntent = PendingIntent.getActivity(this,
                 0, activityIntent, 0);
 
-        Intent broadcastIntent = new Intent (this, NotificationReceiver.class);
+        Intent broadcastIntent = new Intent(this, NotificationReceiver.class);
         broadcastIntent.putExtra("toastMessage", "There is a calamity happening");
         PendingIntent actionIntent = PendingIntent.getBroadcast(this, 0,
                 broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        android.app.Notification notification =  new NotificationCompat.Builder(this, Notification.CHANNEL_1_ID)
+        android.app.Notification notification = new NotificationCompat.Builder(this, Notification.CHANNEL_1_ID)
                 .setSmallIcon(R.drawable.ic_looks_one_black_24dp)
                 .setContentTitle("Alert")
                 .setContentText("There is a calamity happening!")
@@ -234,9 +251,67 @@ public class AnotherAlertActivity extends AppCompatActivity {
                 .setOnlyAlertOnce(true)
                 .setVibrate(v)
                 .setLights(0xff00ff00, 300, 100)
-                .addAction(R.mipmap.ic_launcher, "Toast",  actionIntent)
+                .addAction(R.mipmap.ic_launcher, "Toast", actionIntent)
                 .build();
 
         notificationManager.notify(1, notification);
+    }
+
+    public void setInstruction(int exitID, String instruction) throws IOException {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiClient.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RegisterAPI api = retrofit.create(RegisterAPI.class);
+
+        Call<String> call = api.sendMessage(exitID, instruction);
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+
+                Toast.makeText(AnotherAlertActivity.this, "Data Inserted Successfully", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+                Toast.makeText(AnotherAlertActivity.this, "Error" + t.getMessage().toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+    }
+
+
+    public void instruct() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiClient.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RegisterAPI api = retrofit.create(RegisterAPI.class);
+
+        Call<List<SafeExits>> call = api.getMessage();
+        call.enqueue(new Callback<List<SafeExits>>() {
+            @Override
+            public void onResponse(Call<List<SafeExits>> call, Response<List<SafeExits>> response) {
+                final List<SafeExits> ins = response.body();
+                for (final SafeExits value : ins) {
+                    if (value.getExitID() == 1) {
+                        instruction.setText(value.getInstruction());
+                        System.out.println("FURTHER " + value);
+
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<SafeExits>> call, Throwable t) {
+
+            }
+        });
     }
 }

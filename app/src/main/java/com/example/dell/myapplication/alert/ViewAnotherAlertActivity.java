@@ -1,12 +1,18 @@
 package com.example.dell.myapplication.alert;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dell.myapplication.ApiClient;
 import com.example.dell.myapplication.R;
+import com.example.dell.myapplication.UsersActivity;
 import com.example.dell.myapplication.api.RegisterAPI;
 import com.example.dell.myapplication.model.SafeExits;
 
@@ -21,6 +27,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ViewAnotherAlertActivity extends AppCompatActivity {
 
     CheckBox MFCExit2, backgateExit2, mainExit2, mainGateExit2, LRTExit2;
+    Button btnOK;
+    TextView ins1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +42,50 @@ public class ViewAnotherAlertActivity extends AppCompatActivity {
         mainGateExit2 = (CheckBox)findViewById(R.id.mainGateExit2);
         LRTExit2 = (CheckBox)findViewById(R.id.LRTExit2);
 
+
+        ins1 = (TextView)findViewById(R.id.ins1);
+        fetchData();
+
         viewSafeExit();
 
+
+        btnOK = (Button) findViewById(R.id.btnOK2);
+        btnOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent view = new Intent(ViewAnotherAlertActivity.this, UsersActivity.class);
+                startActivity(view);
+            }
+        });
+
+    }
+
+    private void fetchData() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiClient.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RegisterAPI api = retrofit.create(RegisterAPI.class);
+
+        Call<List<SafeExits>> call = api.getMessage();
+        call.enqueue(new Callback<List<SafeExits>>() {
+            @Override
+            public void onResponse(Call<List<SafeExits>> call, Response<List<SafeExits>> response) {
+                List<SafeExits> adslist = response.body();
+
+                String instruction = adslist.get(0).getInstruction();
+                ins1.setText(instruction);
+
+            }
+
+            @Override
+            public void onFailure(Call<List<SafeExits>> call, Throwable t) {
+
+                Toast.makeText(ViewAnotherAlertActivity.this, ""+t.getMessage().toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
     private void viewSafeExit(){
