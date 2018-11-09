@@ -87,7 +87,7 @@ public class MessageDetailActivity extends AppCompatActivity {
                             public void onFailure(Call<Message> call, Throwable t) {
                                 t.printStackTrace();
 
-                                Toast.makeText(MessageDetailActivity.this, "Updated (error)", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MessageDetailActivity.this, "Updatedd", Toast.LENGTH_SHORT).show();
                             }
                         });
 

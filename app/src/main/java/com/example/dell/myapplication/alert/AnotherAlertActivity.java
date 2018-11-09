@@ -2,11 +2,8 @@ package com.example.dell.myapplication.alert;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.PendingIntent;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -21,8 +18,6 @@ import com.example.dell.myapplication.ApiClient;
 import com.example.dell.myapplication.R;
 import com.example.dell.myapplication.api.RegisterAPI;
 import com.example.dell.myapplication.model.SafeExits;
-import com.example.dell.myapplication.notif.Notification;
-import com.example.dell.myapplication.notif.NotificationReceiver;
 
 import java.io.IOException;
 import java.util.List;
@@ -94,7 +89,7 @@ public class AnotherAlertActivity extends AppCompatActivity {
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
-                                sendNotif();
+
                                 Toast.makeText(AnotherAlertActivity.this, "Alert sent!", Toast.LENGTH_SHORT).show();
 
 
@@ -115,7 +110,6 @@ public class AnotherAlertActivity extends AppCompatActivity {
         getExits();
 
     }
-
 
     public void btnUncheck() {
         MFCExit.setChecked(false);
@@ -226,36 +220,6 @@ public class AnotherAlertActivity extends AppCompatActivity {
     }
 
 
-    public void sendNotif() {
-
-
-        long[] v = {500, 1000};
-
-        Intent activityIntent = new Intent(this, ViewAlertActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(this,
-                0, activityIntent, 0);
-
-        Intent broadcastIntent = new Intent(this, NotificationReceiver.class);
-        broadcastIntent.putExtra("toastMessage", "There is a calamity happening");
-        PendingIntent actionIntent = PendingIntent.getBroadcast(this, 0,
-                broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        android.app.Notification notification = new NotificationCompat.Builder(this, Notification.CHANNEL_1_ID)
-                .setSmallIcon(R.drawable.ic_looks_one_black_24dp)
-                .setContentTitle("Alert")
-                .setContentText("There is a calamity happening!")
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                .setContentIntent(contentIntent)
-                .setAutoCancel(true)
-                .setOnlyAlertOnce(true)
-                .setVibrate(v)
-                .setLights(0xff00ff00, 300, 100)
-                .addAction(R.mipmap.ic_launcher, "Toast", actionIntent)
-                .build();
-
-        notificationManager.notify(1, notification);
-    }
 
     public void setInstruction(int exitID, String instruction) throws IOException {
 

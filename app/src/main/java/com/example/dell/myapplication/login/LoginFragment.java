@@ -102,13 +102,11 @@ public class LoginFragment extends Fragment {
                     }
                     */
 
-                    System.out.println("NADINE1  " + response.body().getName());
-                    System.out.println("NADINE2  " + response.body().getUserType());
-                    System.out.println("NADINE3  " + response.body().getId());
 
                     // MainActivity.prefConfig.writeLoginStatus(true);
                    String id  =  String.valueOf(response.body().getId());
                   // loginFormActivityListener.performLogin(id);
+
 
                     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
                     SharedPreferences.Editor editor2 = prefs.edit();
@@ -126,10 +124,6 @@ public class LoginFragment extends Fragment {
                         Intent intent2 = new Intent(getActivity(), UsersActivity.class);
                         startActivity(intent2);
                     }
-
-                    System.out.println("NADINE3  " + response.body().getId());
-
-
 
                     Toast.makeText(getContext(),"SUCCESS", Toast.LENGTH_SHORT).show();
 
