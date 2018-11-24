@@ -1,18 +1,23 @@
 package com.example.dell.myapplication.model;
 
+import android.widget.Spinner;
+
 public class Message {
     public int id;
     public int receiverID;
-    public int userID;
+    public int senderID;
     public String message;
     public String status;
-    
+    public String location;
 
-    public Message(int receiverID, int userID, String message){
+
+
+    public Message(int receiverID, int senderID, String message){
 
         this.receiverID = receiverID;
-        this.userID = userID;
+        this.senderID = getSenderID();
         this.message = message;
+        this.location = location;
 
     }
     public int getId() {
@@ -32,11 +37,11 @@ public class Message {
     }
 
     public int getSenderID() {
-        return userID;
+        return senderID;
     }
 
     public void setSenderID(int senderID) {
-        this.userID = userID;
+        this.senderID = senderID;
     }
 
     public String getMessage() {
@@ -53,6 +58,14 @@ public class Message {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
 

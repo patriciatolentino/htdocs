@@ -1,11 +1,14 @@
 package com.example.dell.myapplication.alert;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,6 +19,7 @@ import com.example.dell.myapplication.R;
 import com.example.dell.myapplication.adapter.AlertAdapter;
 import com.example.dell.myapplication.api.RegisterAPI;
 import com.example.dell.myapplication.model.Crud;
+import com.example.dell.myapplication.model.Result;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +30,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ViewAlertActivity extends AppCompatActivity  {
+public class ViewAlertActivity extends AppCompatActivity {
+
+    private static final String TAG = "ViewCalamity";
+
+    private Result result;
+    private List<Result> resultList;
 
     private RecyclerView recyclerView;
     private AlertAdapter adapter;
@@ -45,12 +54,12 @@ public class ViewAlertActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_user);
 
 
-        image = (ImageView)findViewById(R.id.imgCalamity);
+        image = (ImageView) findViewById(R.id.imgCalamity);
         CBearthquake = (CheckBox) findViewById(R.id.cbEartquake);
         CBfire = (CheckBox) findViewById(R.id.cbFire);
         CBflood = (CheckBox) findViewById(R.id.cbFlood);
         CBbomb = (CheckBox) findViewById(R.id.cbBomb);
-        CBshooter = (CheckBox)findViewById(R.id.cbShooter);
+        CBshooter = (CheckBox) findViewById(R.id.cbShooter);
 
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -70,37 +79,35 @@ public class ViewAlertActivity extends AppCompatActivity  {
             }
         });
     }
+
     private void loadDataCrud() {
 
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(ApiClient.BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            RegisterAPI api = retrofit.create(RegisterAPI.class);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiClient.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RegisterAPI api = retrofit.create(RegisterAPI.class);
 
-            Call<Crud> call = api.sendAlert();
-            call.enqueue(new Callback<Crud>() {
-                @Override
-                public void onResponse(Call<Crud> call, Response<Crud> response) {
+        Call<Crud> call = api.sendAlert();
+        call.enqueue(new Callback<Crud>() {
 
-                    if (response.isSuccessful()) {
-                        crud = response.body().getResult();
-                        adapter = new AlertAdapter(crud, ViewAlertActivity.this);
-                        recyclerView.setAdapter(adapter);
-                        if (response.body().getId() == ("1")) {
-                            image.setImageResource(R.drawable.earthquake);
-                            System.out.println("CALAMITY  " + response.body().getId());
+            @Override
+            public void onResponse(Call<Crud> call, Response<Crud> response) {
+                Crud crud = response.body();
 
-                        }
-
-
-                    }
-                    }
-
-                @Override
-                public void onFailure(Call<Crud> call, Throwable t) {
-
+                if (response.isSuccessful()) {
+                    adapter = new AlertAdapter(crud.getResult(), ViewAlertActivity.this);
+                    recyclerView.setAdapter(adapter);
                 }
-            });
+
+                Log.d(TAG, "onResponse: " + response.body());
+
+            }
+
+            @Override
+            public void onFailure(Call<Crud> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getLocalizedMessage());
+            }
+        });
     }
 }

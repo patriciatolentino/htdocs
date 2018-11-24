@@ -12,30 +12,41 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="42dp"
-        android:text="OK"
-
+        android:layout_marginBottom="27dp"
         android:backgroundTint="@android:color/holo_green_light"
+
+        android:text="OK"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/imgCalamity"
-        android:layout_width="100dp"
-        android:layout_height="93dp"
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="53dp"
-        app:srcCompat="@android:color/background_light" />
+        android:layout_marginTop="36dp"
+        android:text="Calamities"
+        android:textColor="#2c6535"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <!--<ImageView-->
+        <!--android:id="@+id/imgCalamity"-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="93dp"-->
+        <!--android:background="@drawable/earthquake_img"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="53dp" />-->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="212dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="137dp" />
+        android:layout_width="320dp"
+        android:layout_height="304dp"
+        android:layout_centerInParent="true"
+        android:padding="10dp" />
 
 
 </RelativeLayout>

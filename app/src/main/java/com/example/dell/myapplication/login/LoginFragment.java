@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,17 +21,23 @@ import android.widget.Toast;
 import com.example.dell.myapplication.MainActivity;
 import com.example.dell.myapplication.R;
 import com.example.dell.myapplication.UsersActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class LoginFragment extends Fragment {
-
+    private static final String TAG = "LoginFragment";
 
     private EditText UserName, UserPassword;
     private Button btnLogin;
@@ -57,6 +65,21 @@ public class LoginFragment extends Fragment {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseInstanceId.getInstance().getInstanceId()
+                        .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                                if (!task.isSuccessful()) {
+                                    Log.w(TAG, "getInstanceId failed", task.getException());
+                                    return;
+                                }
+
+                                // Get new Instance ID token
+                                String token = task.getResult().getToken();
+
+                                Log.d(TAG, "onComplete: " + token);
+                            }
+                        });
                 performLogin();
             }
         });
@@ -79,6 +102,7 @@ public class LoginFragment extends Fragment {
         call.enqueue(new Callback<User1>() {
             @Override
             public void onResponse(Call<User1> call, Response<User1> response) {
+
                 if(response.body().getResponse().equals("ok")){
 
                     Integer value = response.body().getUserType();
@@ -86,10 +110,17 @@ public class LoginFragment extends Fragment {
                     String userType = String.valueOf(response.body().getUserType());
                     SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
                     SharedPreferences.Editor editor = pref.edit();
+                    Log.d(TAG, "onResponse: " + response.body().getUserType());
                     editor.putInt("userType", response.body().getUserType());
                     editor.apply();
 
-                  /*  if (response.body().getUserType() == 1) {
+                    SharedPreferences sp = getContext().getSharedPreferences("your_prefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor1 = sp.edit();
+                    Log.d(TAG, "onResponse: " + response.body().getId());
+                    editor1.putInt("ID", response.body().getId());
+                    editor1.apply();
+
+                  if (response.body().getUserType() == 1) {
                         FragmentManager fm = getFragmentManager();
                         FragmentTransaction ft = fm.beginTransaction();
                         WelcomeFragment llf = new WelcomeFragment();
@@ -97,10 +128,10 @@ public class LoginFragment extends Fragment {
                         ft.commit();
 
                     } else if (value == 0) {
-                        Intent intent2 = new Intent(getActivity(), UserActivity.class);
+                        Intent intent2 = new Intent(getActivity(), UsersActivity.class);
                         startActivity(intent2);
                     }
-                    */
+
 
 
                     // MainActivity.prefConfig.writeLoginStatus(true);
@@ -108,24 +139,27 @@ public class LoginFragment extends Fragment {
                   // loginFormActivityListener.performLogin(id);
 
 
-                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-                    SharedPreferences.Editor editor2 = prefs.edit();
-                    editor2.putInt("ID", response.body().getId());
-                    editor2.apply();
+//                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+//                    SharedPreferences.Editor editor2 = prefs.edit();
+//                    editor2.putInt("ID", response.body().getId());
+//                    editor2.apply();
 
-                   if (response.body().getId() == 1) {
+                   /*if (response.body().getId() == 1) {
                         FragmentManager fm = getFragmentManager();
                         FragmentTransaction ft = fm.beginTransaction();
                         WelcomeFragment llf = new WelcomeFragment();
                         ft.replace(R.id.fragment_container, llf);
                         ft.commit();
+                        System.out.println("ID  " + getId());
 
-                    } else if (response.body().getId() >= 2) {
+                       Toast.makeText(getContext(),"SUCCESS", Toast.LENGTH_SHORT).show();
+
+                    } else if (response.body().getId() == 0) {
                         Intent intent2 = new Intent(getActivity(), UsersActivity.class);
                         startActivity(intent2);
                     }
+*/
 
-                    Toast.makeText(getContext(),"SUCCESS", Toast.LENGTH_SHORT).show();
 
 
                 }else{

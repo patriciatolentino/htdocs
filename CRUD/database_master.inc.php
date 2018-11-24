@@ -62,7 +62,7 @@ class DatabaseMaster{
 	}
 
 	public function checkID($idNo){
-		$query = "SELECT userID FROM users WHERE studentID='$idNo'";
+		$query = "SELECT userID FROM users_info WHERE studentID='$idNo'";
 		$result = mysqli_query($this->databaseConnection, $query);
 		if($result){
 			if(mysqli_num_rows($result)) return false;

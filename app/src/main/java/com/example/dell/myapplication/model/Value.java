@@ -1,13 +1,21 @@
 package com.example.dell.myapplication.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class Value {
+    @SerializedName("value")
+    @Expose
     String value;
+
+    @SerializedName("message")
+    @Expose
     String message;
-    List<Crud> result;
+
+    List<Result> result;
+
     List<AlertDetails> alerts;
 
     public List<MessageDetails> getMessageDetails() {
@@ -17,8 +25,8 @@ public class Value {
     public void setMessageDetails(List<MessageDetails> messageDetails) {
         this.messageDetails = messageDetails;
     }
-
     List<MessageDetails> messageDetails;
+
     public String getValue() {
         return value;
     }
@@ -27,7 +35,7 @@ public class Value {
         return message;
     }
 
-    public List<Crud> getResult() {
+    public List<Result> getResult() {
         return result;
     }
 
@@ -44,4 +52,6 @@ public class Value {
     public void setAlerts(List<AlertDetails> alerts) {
         this.alerts = alerts;
     }
+
+
 }

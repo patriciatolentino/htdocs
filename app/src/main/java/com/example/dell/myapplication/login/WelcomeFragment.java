@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.example.dell.myapplication.MainActivity;
 import com.example.dell.myapplication.MessageDetailActivity;
 import com.example.dell.myapplication.R;
+import com.example.dell.myapplication.ViewActivity;
+import com.example.dell.myapplication.ViewReports;
 import com.example.dell.myapplication.alert.AlertActivity;
 
 
@@ -27,11 +29,7 @@ public class WelcomeFragment extends Fragment {
     private Button btnLogout;
     private Button btnAlert;
     private Button btnModify;
-    private Button btnMessages;
-
-
-
-
+    private Button btnMessages, btnReports;
 
     OnLogoutListener logoutListener;
     public interface  OnLogoutListener {
@@ -45,9 +43,6 @@ public class WelcomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
-
 
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_welcome, container, false);
@@ -68,7 +63,7 @@ public class WelcomeFragment extends Fragment {
         btnAlert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent viewdata = new Intent(getActivity(), AlertActivity.class);
+                Intent viewdata = new Intent(getActivity(), ViewActivity.class);
                 startActivity(viewdata);
             }
         });
@@ -82,6 +77,16 @@ public class WelcomeFragment extends Fragment {
             }
         });
 
+
+        /*btnReports = view.findViewById(R.id.btnReports);
+        btnReports.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent viewdata = new Intent (getActivity(), ViewReports.class);
+                startActivity(viewdata);
+            }
+        });
+        */
 
         return view;
 

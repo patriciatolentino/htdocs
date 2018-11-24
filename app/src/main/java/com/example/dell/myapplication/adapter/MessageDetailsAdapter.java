@@ -37,27 +37,25 @@ public class MessageDetailsAdapter extends RecyclerView.Adapter<MessageDetailsAd
     public void onBindViewHolder(final MessageDetailsAdapter.ViewHolder holder, final int position) {
         final MessageDetails listItem = listItems.get(position);
 
+
         holder.name.setText(listItem.getName());
         holder.message.setText(listItem.getMessage());
+     //   holder.location.setText(listItem.getLocation());
         holder.checkBox.setChecked(listItem.getSelected());
         holder.checkBox.setTag(position);
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Integer pos = (Integer) holder.checkBox.getTag();
-
                 if(listItems.get(pos).getSelected()){
                     listItems.get(pos).setSelected(false);
                     idSelected = listItems.get(pos).getId();
                 }else{
                     listItems.get(pos).setSelected(true);
                 }
-
             }
         });
     }
-
-
     @Override
     public int getItemCount() {
         return listItems.size();
@@ -67,6 +65,7 @@ public class MessageDetailsAdapter extends RecyclerView.Adapter<MessageDetailsAd
         public CheckBox checkBox;
         public TextView name;
         public TextView message;
+    //    public TextView location;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -74,6 +73,7 @@ public class MessageDetailsAdapter extends RecyclerView.Adapter<MessageDetailsAd
             checkBox = itemView.findViewById(R.id.checkBox);
             name = itemView.findViewById(R.id.txtName);
             message = itemView.findViewById(R.id.txtMsg);
+       //     location = itemView.findViewById(R.id.txtLocation);
         }
 
 

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="#2c6535">
 
 
     <ImageView
@@ -17,10 +18,9 @@
         android:src="@drawable/blueprint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.077" />
+        app:layout_constraintVertical_bias="0.171" />
 
     <CheckBox
         android:id="@+id/MFCExit"
@@ -115,32 +115,32 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="ALERT"
-
         android:backgroundTint="@android:color/holo_red_light"
+
+        android:text="ALERT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.984" />
+        app:layout_constraintVertical_bias="0.92" />
 
     <TextView
         android:id="@+id/select"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="28dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Select the safest exits"
-        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/blueprint"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView6"
@@ -152,7 +152,7 @@
         android:layout_marginTop="8dp"
         android:text="MFC Exit"
         android:textColor="@android:color/black"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/blueprint"
         app:layout_constraintEnd_toEndOf="@+id/blueprint"
         app:layout_constraintHorizontal_bias="0.306"
@@ -170,7 +170,7 @@
         android:layout_marginTop="8dp"
         android:text="Backgate Exit"
         android:textColor="@android:color/black"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/blueprint"
         app:layout_constraintEnd_toEndOf="@+id/blueprint"
         app:layout_constraintHorizontal_bias="0.806"
@@ -188,7 +188,7 @@
         android:layout_marginTop="8dp"
         android:text="Exit1"
         android:textColor="@android:color/black"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/mainExit"
         app:layout_constraintEnd_toEndOf="@+id/blueprint"
         app:layout_constraintHorizontal_bias="0.501"
@@ -206,7 +206,7 @@
         android:layout_marginTop="8dp"
         android:text="Exit 2"
         android:textColor="@android:color/black"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/mainGateExit"
         app:layout_constraintEnd_toEndOf="@+id/blueprint"
         app:layout_constraintHorizontal_bias="0.636"
@@ -224,7 +224,7 @@
         android:layout_marginTop="8dp"
         android:text="LRT Exit"
         android:textColor="@android:color/black"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/LRTExit"
         app:layout_constraintEnd_toEndOf="@+id/blueprint"
         app:layout_constraintHorizontal_bias="0.929"
@@ -248,16 +248,17 @@
         app:layout_constraintHorizontal_bias="0.882"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.524" />
+        app:layout_constraintVertical_bias="0.544" />
 
     <EditText
         android:id="@+id/instruc1"
         android:layout_width="271dp"
-        android:layout_height="54dp"
+        android:layout_height="35dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="36dp"
+        android:background="@android:color/white"
         android:ems="10"
         android:hint="Further Instructions"
         android:inputType="textMultiLine"
@@ -270,7 +271,7 @@
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/blueprint"
-        app:layout_constraintVertical_bias="0.47" />
+        app:layout_constraintVertical_bias="0.218" />
 
 
 </android.support.constraint.ConstraintLayout>

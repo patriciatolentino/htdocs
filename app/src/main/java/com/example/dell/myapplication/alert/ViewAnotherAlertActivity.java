@@ -14,6 +14,7 @@ import com.example.dell.myapplication.ApiClient;
 import com.example.dell.myapplication.R;
 import com.example.dell.myapplication.UsersActivity;
 import com.example.dell.myapplication.api.RegisterAPI;
+import com.example.dell.myapplication.model.Instruction;
 import com.example.dell.myapplication.model.SafeExits;
 
 import java.util.List;
@@ -48,7 +49,6 @@ public class ViewAnotherAlertActivity extends AppCompatActivity {
 
         viewSafeExit();
 
-
         btnOK = (Button) findViewById(R.id.btnOK2);
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,11 +68,11 @@ public class ViewAnotherAlertActivity extends AppCompatActivity {
 
         RegisterAPI api = retrofit.create(RegisterAPI.class);
 
-        Call<List<SafeExits>> call = api.getMessage();
-        call.enqueue(new Callback<List<SafeExits>>() {
+        Call<List<Instruction>> call = api.getMessage();
+        call.enqueue(new Callback<List<Instruction>>() {
             @Override
-            public void onResponse(Call<List<SafeExits>> call, Response<List<SafeExits>> response) {
-                List<SafeExits> adslist = response.body();
+            public void onResponse(Call<List<Instruction>> call, Response<List<Instruction>> response) {
+                List<Instruction> adslist = response.body();
 
                 String instruction = adslist.get(0).getInstruction();
                 ins1.setText(instruction);
@@ -80,7 +80,7 @@ public class ViewAnotherAlertActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<SafeExits>> call, Throwable t) {
+            public void onFailure(Call<List<Instruction>> call, Throwable t) {
 
                 Toast.makeText(ViewAnotherAlertActivity.this, ""+t.getMessage().toString(), Toast.LENGTH_SHORT).show();
 

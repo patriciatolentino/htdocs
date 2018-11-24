@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
 	$receiverID = $_POST['receiverID'];
 	$senderID = $_POST['senderID'];
 	$message = $_POST['message'];
-	$date = date("Y-m-d");
+	$date = date('Y-m-d H:i:s');
 
 	require_once('../config.php');
 	

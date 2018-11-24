@@ -5,7 +5,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL ="http://192.168.43.149/CRUD/";
+    public static final String BASE_URL ="https://isproj2b.benilde.edu.ph/BEAP/CRUD/";
+    public static final String IMAGE_URL ="https://isproj2b.benilde.edu.ph/BEAP/storage/calamity_images/";
     public static Retrofit retrofit = null;
 
     public static  Retrofit getApiClient() {
@@ -16,3 +17,4 @@ public class ApiClient {
         return  retrofit;
     }
 }
+

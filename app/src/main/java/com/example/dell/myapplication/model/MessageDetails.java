@@ -1,6 +1,13 @@
 package com.example.dell.myapplication.model;
 
 public class MessageDetails {
+
+    public boolean isSelected;
+    public int id;
+    public String name;
+    public String message;
+    public String location;
+
     public int getId() {
         return id;
     }
@@ -32,10 +39,13 @@ public class MessageDetails {
     public void setSelected(boolean selected) {
         isSelected = selected;
     }
+    public String getLocation() {
+        return location;
+    }
 
-    public boolean isSelected;
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-    public int id;
-    public String name;
-    public String message;
+
 }

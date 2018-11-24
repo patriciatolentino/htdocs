@@ -1,13 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="colorPrimary">#3f51b5</color>
-    <color name="colorPrimaryDark">#303f9f</color>
-    <color name="colorAccent">#ff4081</color>
+    <resources>
+        <color name="colorPrimary">#3F51B5</color>
+        <color name="colorPrimaryDark">#303F9F</color>
+        <color name="colorAccent">#FF4081</color>
+
+        <color name="lightred">#ff8080</color>
+        <color name="red">#990000</color>
+        <color name="redtwo">#b30000</color>
+        <color name="darkred">#f32837</color>
+        <color name="yellow">#EED45A</color>
+        <color name="darkyellow">#d4bb46</color>
+        <color name="lime">#a9dc93</color>
+        <color name="darklime">#9dbf35</color>
+        <color name="green">#4fc86e</color>
+        <color name="darkgreen">#36b957</color>
+        <color name="blue">#4891dc</color>
+        <color name="darkblue">#37c4c6</color>
+        <color name="darkerblue">#5A9CEE</color>
+        <color name="darkestblue">#002859</color>
+        <color name="darkorange">#ea7125</color>
+        <color name="orange">#ffba66</color>
+
+        <color name="white">#ffffff</color>
+
+        <color name="csb">#417630</color>
+        <color name="msg">#870606</color>
 
 
-    <color name="dimBackgroundColor">#40000000</color>
-    <color name="brightBackgroundColor">#ffffffff</color>
-    <color name="colorRowSeparator">#cccccc</color>
-    <color name="filterBackground">#cccccc</color>
-    <color name="filterText">#3366cc</color>
+        <color name="black1">#1a1a1a</color>
+        <color name="black2">#333333</color>
+        <color name="lightgray">#cacac8</color>
+
+
+        <color name="dimBackgroundColor">#40000000</color>
+        <color name="brightBackgroundColor">#ffffffff</color>
+        <color name="colorRowSeparator">#cccccc</color>
+        <color name="filterBackground">#cccccc</color>
+        <color name="filterText">#3366cc</color>
 </resources>

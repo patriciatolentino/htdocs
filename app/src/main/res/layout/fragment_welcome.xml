@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2c6535"
     tools:context="com.example.dell.myapplication.MainActivity">
 
     <TextView
@@ -13,21 +14,23 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="74dp"
-        android:layout_marginTop="113dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="104dp"
+        android:background="@android:color/holo_green_dark"
         android:text="Welcome "
+        android:textColor="@android:color/white"
         android:textSize="24sp"
         tools:layout_editor_absoluteX="70dp"
         tools:layout_editor_absoluteY="101dp" />
 
     <Button
         android:id="@+id/btnLogout"
-        android:layout_width="260dp"
-        android:layout_height="88dp"
+        android:layout_width="270dp"
+        android:layout_height="71dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="195dp"
-        android:backgroundTint="@android:color/holo_green_light"
+        android:layout_marginBottom="79dp"
+        android:backgroundTint="@android:color/holo_blue_dark"
         android:text="Logout"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,10 +41,10 @@
 
     <Button
         android:id="@+id/btnAlert"
-        android:layout_width="130dp"
+        android:layout_width="270dp"
         android:layout_height="130dp"
-        android:layout_alignStart="@+id/btnLogout"
-        android:layout_alignTop="@+id/btnMessages"
+        android:layout_above="@+id/btnMessages"
+        android:layout_centerHorizontal="true"
         android:backgroundTint="@android:color/holo_red_light"
         android:text="ALERT"
         android:textSize="20sp"
@@ -54,12 +57,12 @@
 
     <Button
         android:id="@+id/btnMessages"
-        android:layout_width="130dp"
+        android:layout_width="270dp"
         android:layout_height="130dp"
-        android:layout_alignEnd="@+id/btnLogout"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="166dp"
-        android:backgroundTint="@android:color/holo_green_light"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="163dp"
+        android:backgroundTint="@android:color/holo_green_dark"
         android:text="Messages"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

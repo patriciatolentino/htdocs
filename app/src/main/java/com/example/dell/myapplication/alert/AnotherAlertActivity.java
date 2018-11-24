@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.dell.myapplication.ApiClient;
 import com.example.dell.myapplication.R;
 import com.example.dell.myapplication.api.RegisterAPI;
+import com.example.dell.myapplication.model.Instruction;
 import com.example.dell.myapplication.model.SafeExits;
 
 import java.io.IOException;
@@ -73,7 +74,7 @@ public class AnotherAlertActivity extends AppCompatActivity {
         btnSendToUsers = (Button) findViewById(R.id.btnSendToUsers);
         btnSendToUsers.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(AnotherAlertActivity.this);
                 alertDialogBuilder.setTitle("Warning");
                 alertDialogBuilder
@@ -91,7 +92,6 @@ public class AnotherAlertActivity extends AppCompatActivity {
                                 }
 
                                 Toast.makeText(AnotherAlertActivity.this, "Alert sent!", Toast.LENGTH_SHORT).show();
-
 
                             }
 
@@ -219,8 +219,6 @@ public class AnotherAlertActivity extends AppCompatActivity {
         });
     }
 
-
-
     public void setInstruction(int exitID, String instruction) throws IOException {
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -237,19 +235,16 @@ public class AnotherAlertActivity extends AppCompatActivity {
             public void onResponse(Call<String> call, Response<String> response) {
 
                 Toast.makeText(AnotherAlertActivity.this, "Data Inserted Successfully", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
 
                 Toast.makeText(AnotherAlertActivity.this, "Error" + t.getMessage().toString(), Toast.LENGTH_SHORT).show();
-
             }
         });
-
     }
-
-
     public void instruct() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiClient.BASE_URL)
@@ -258,23 +253,24 @@ public class AnotherAlertActivity extends AppCompatActivity {
 
         RegisterAPI api = retrofit.create(RegisterAPI.class);
 
-        Call<List<SafeExits>> call = api.getMessage();
-        call.enqueue(new Callback<List<SafeExits>>() {
+        Call<List<Instruction>> call = api.getMessage();
+        call.enqueue(new Callback<List<Instruction>>() {
             @Override
-            public void onResponse(Call<List<SafeExits>> call, Response<List<SafeExits>> response) {
-                final List<SafeExits> ins = response.body();
-                for (final SafeExits value : ins) {
-                    if (value.getExitID() == 1) {
-                        instruction.setText(value.getInstruction());
-                        System.out.println("FURTHER " + value);
-
+            public void onResponse(Call<List<Instruction>> call, Response<List<Instruction>> response) {
+                if(response.isSuccessful()){
+                    Log.d(TAG, "onResponse: " + response.body());
+                    final List<Instruction> ins = response.body();
+                    for (final Instruction value : ins) {
+                        if (value.getExitID().equals("1")) {
+                            instruction.setText(value.getInstruction());
+                        }
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<List<SafeExits>> call, Throwable t) {
-
+            public void onFailure(Call<List<Instruction>> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getLocalizedMessage());
             }
         });
     }

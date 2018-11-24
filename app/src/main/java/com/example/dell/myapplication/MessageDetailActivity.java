@@ -11,12 +11,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dell.myapplication.adapter.MessageDetailsAdapter;
+import com.example.dell.myapplication.alert.ViewAnotherAlertActivity;
 import com.example.dell.myapplication.api.RegisterAPI;
 import com.example.dell.myapplication.model.Message;
 import com.example.dell.myapplication.model.MessageDetails;
+import com.example.dell.myapplication.model.SafeExits;
 import com.example.dell.myapplication.model.Value;
 
 import java.util.ArrayList;
@@ -29,11 +32,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MessageDetailActivity extends AppCompatActivity {
+
     private MessageDetailsAdapter viewAdapter;
     private RecyclerView recyclerView;
-    private Button buttonUpdate;
     private List<MessageDetails> crud = new ArrayList<>();
     private int receiverID;
+    private Button buttonUpdate;
+   TextView location;
 
 
     @Override
@@ -41,42 +46,41 @@ public class MessageDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_detail);
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MessageDetailActivity.this);
+      //fetchData();
+        loadDataCrud();
 
+      // location = (TextView) findViewById(R.id.txtLocation);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MessageDetailActivity.this);
         receiverID = prefs.getInt("ID", 0);
 
         recyclerView = findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+
         buttonUpdate = (Button) findViewById(R.id.btnUpdate);
         buttonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MessageDetailActivity.this);
-                alertDialogBuilder.setTitle("Warning");
-                alertDialogBuilder
-                        .setMessage("Do you wish to continue?")
-                        .setCancelable(false)
-                        .setPositiveButton("Update", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+
                 for(int i =0; i<MessageDetailsAdapter.listItems.size(); i++){
                     if(MessageDetailsAdapter.listItems.get(i).getSelected()){
-
+                        System.out.println("ids " + MessageDetailsAdapter.listItems.get(i).getId());
                         Retrofit retrofit = new Retrofit.Builder()
                                 .baseUrl(ApiClient.BASE_URL)
                                 .addConverterFactory(GsonConverterFactory.create())
                                 .build();
                         RegisterAPI api = retrofit.create(RegisterAPI.class);
-                        Call<Message> call = api.updateMessage( MessageDetailsAdapter.listItems.get(i).getId(), receiverID);
+                        Call<Message> call = api.updateMessage(MessageDetailsAdapter.listItems.get(i).getId(),1);
                         call.enqueue(new Callback<Message>() {
                             @Override
                             public void onResponse(Call<Message> call, Response<Message> response) {
 
-
                                 if (response.isSuccessful()){
-                                    Toast.makeText(MessageDetailActivity.this, "Message Sent.", Toast.LENGTH_SHORT).show();
+                                    System.out.println("id " + response.body().getMessage());
+                                    loadDataCrud();
+                                    Toast.makeText(MessageDetailActivity.this, "Updatedd.", Toast.LENGTH_SHORT).show();
 
                                 } else {
                                     Toast.makeText(MessageDetailActivity.this, "Try Again.", Toast.LENGTH_SHORT).show();
@@ -87,24 +91,14 @@ public class MessageDetailActivity extends AppCompatActivity {
                             public void onFailure(Call<Message> call, Throwable t) {
                                 t.printStackTrace();
 
-                                Toast.makeText(MessageDetailActivity.this, "Updatedd", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MessageDetailActivity.this, "Error", Toast.LENGTH_SHORT).show();
                             }
                         });
 
                     }
                 }
             }
-                        })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
-            }
         });
-        loadDataCrud();
     }
 
     private void loadDataCrud() {
@@ -112,8 +106,11 @@ public class MessageDetailActivity extends AppCompatActivity {
                 .baseUrl(ApiClient.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
         RegisterAPI api = retrofit.create(RegisterAPI.class);
+
         Call<Value> call = api.getPendingMessage();
+
         call.enqueue(new Callback<Value>() {
             @Override
             public void onResponse(Call<Value> call, Response<Value> response) {
@@ -133,4 +130,32 @@ public class MessageDetailActivity extends AppCompatActivity {
             }
         });
     }
+
+   /* private void fetchData() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiClient.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RegisterAPI api = retrofit.create(RegisterAPI.class);
+
+        Call<List<Message>> call = api.getLocation();
+        call.enqueue(new Callback<List<Message>>() {
+            @Override
+            public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
+                List<Message> adslist = response.body();
+
+                String loc = adslist.get(0).getLocation();
+                location.setText(loc);
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Message>> call, Throwable t) {
+
+                Toast.makeText(MessageDetailActivity.this, ""+t.getMessage().toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }*/
 }

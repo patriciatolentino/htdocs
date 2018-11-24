@@ -2,12 +2,15 @@ package com.example.dell.myapplication;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.example.dell.myapplication.login.ApiInterface;
 import com.example.dell.myapplication.login.LoginFragment;
 import com.example.dell.myapplication.login.PrefConfig;
 import com.example.dell.myapplication.login.WelcomeFragment;
-
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 
 public class MainActivity extends AppCompatActivity implements LoginFragment.OnLoginFormActivityListener,
@@ -63,8 +66,6 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnL
         prefConfig.writeName("User");
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LoginFragment()).commit();
     }
-
-
 }
 
 

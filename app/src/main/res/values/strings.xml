@@ -46,5 +46,119 @@
     <string name="Close2">NavBar2</string>
     <string name="title_activity_login2">LoginActivity</string>
 
+    <string name="country_prompt">Choose your location</string>
+    <string-array name="locations">
+        <item>B401</item>
+        <item>M401</item>
+        <item>D401</item>
+        <item>CL3</item>
+        <item>LRC Ext.</item>
+    </string-array>
+
+
+
+    <string name="benildet">Benilde Hall</string>
+    <string-array name="benilde">
+        <item>ITD</item>
+        <item>ITD Main Office</item>
+        <item>BCL1</item>
+        <item>B301</item>
+        <item>B302</item>
+        <item>B303</item>
+        <item>B304</item>
+        <item>B305</item>
+        <item>B306</item>
+        <item>B307</item>
+        <item>B308</item>
+        <item>B309</item>
+        <item>B310</item>
+        <item>B401</item>
+        <item>B402</item>
+        <item>B403</item>
+        <item>B404</item>
+        <item>B405</item>
+        <item>B406</item>
+        <item>B407</item>
+        <item>B408</item>
+        <item>B409</item>
+        <item>B410</item>
+    </string-array>
+
+    <string name="mutient">Mutien Hall</string>
+    <string-array name="mutien">
+        <item>LRC Main</item>
+        <item>Plaza V </item>
+        <item>M301</item>
+        <item>M302</item>
+        <item>M303</item>
+        <item>M304</item>
+        <item>M305</item>
+        <item>M306</item>
+        <item>M307</item>
+        <item>M308</item>
+        <item>M309</item>
+        <item>M310</item>
+        <item>M401</item>
+        <item>M402</item>
+        <item>M403</item>
+        <item>M404</item>
+        <item>M405</item>
+        <item>M406</item>
+        <item>M407</item>
+        <item>M408</item>
+        <item>M409</item>
+        <item>M410</item>
+        <item>M501</item>
+        <item>M502</item>
+        <item>M503</item>
+        <item>M504</item>
+        <item>M505</item>
+        <item>M506</item>
+        <item>M507</item>
+        <item>M508</item>
+        <item>M509</item>
+        <item>M510</item>
+        <item>ARG Theater</item>
+        <item>Gym</item>
+    </string-array>
+
+    <string name="duerrt">Duerr Hall</string>
+    <string-array name="duerr">
+        <item>Chapel</item>
+        <item>Accounting</item>
+        <item>D301</item>
+        <item>D302</item>
+        <item>D303</item>
+        <item>D304</item>
+        <item>D401</item>
+        <item>D402</item>
+        <item>D403</item>
+        <item>D404</item>
+        <item>ISLAB</item>
+        <item>CA Office</item>
+        <item>Consultaion Room</item>
+        <item>D501</item>
+        <item>D502</item>
+        <item>D503</item>
+        <item>D504</item>
+        <item>D505</item>
+    </string-array>
+
+    <string name="solomont">Solomon Hall</string>
+    <string-array name="solomon">
+        <item>Registrar</item>
+        <item>Dance Room</item>
+    </string-array>
+
+    <string name="mfct">MFC Building</string>
+    <string-array name="mfc">
+        <item>Andrew Cafe</item>
+        <item>1st floor</item>
+        <item>2nd floor</item>
+        <item>3rd floor</item>
+        <item>4th floor</item>
+        <item>5th floor</item>
+    </string-array>
+
 
 </resources>

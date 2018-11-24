@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL ="http://192.168.43.149/loginapp/";
+    public static final String BASE_URL ="https://isproj2b.benilde.edu.ph/BEAP/CRUD/";
     public static Retrofit retrofit = null;
 
     public static  Retrofit getApiClient() {

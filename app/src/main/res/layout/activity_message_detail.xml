@@ -9,13 +9,6 @@
     tools:context="MessageDetailActivity">
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </android.support.v7.widget.RecyclerView>
-
     <Button
         android:id="@+id/btnUpdate"
         android:layout_width="match_parent"
@@ -25,4 +18,23 @@
         android:layout_marginBottom="18dp"
         android:backgroundTint="@android:color/holo_green_light"
         android:text="Update" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
+        android:text="Message/s"
+        android:textColor="#2c6535"
+        android:textSize="40sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="283dp"
+        android:layout_height="339dp"
+        android:layout_centerInParent="true">
+
+    </android.support.v7.widget.RecyclerView>
 </RelativeLayout>
