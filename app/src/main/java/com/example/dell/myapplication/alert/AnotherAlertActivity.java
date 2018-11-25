@@ -3,6 +3,7 @@ package com.example.dell.myapplication.alert;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -16,8 +17,13 @@ import android.widget.Toast;
 
 import com.example.dell.myapplication.ApiClient;
 import com.example.dell.myapplication.R;
+import com.example.dell.myapplication.ViewActivity;
 import com.example.dell.myapplication.api.RegisterAPI;
+import com.example.dell.myapplication.login.MainActivity;
+import com.example.dell.myapplication.login.WelcomeFragment;
 import com.example.dell.myapplication.model.Instruction;
+import com.example.dell.myapplication.model.Notif;
+import com.example.dell.myapplication.model.PushNotif;
 import com.example.dell.myapplication.model.SafeExits;
 
 import java.io.IOException;
@@ -92,7 +98,7 @@ public class AnotherAlertActivity extends AppCompatActivity {
                                 }
 
                                 Toast.makeText(AnotherAlertActivity.this, "Alert sent!", Toast.LENGTH_SHORT).show();
-
+                                sendPushNotifs();
                             }
 
                         })
@@ -270,6 +276,39 @@ public class AnotherAlertActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Instruction>> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getLocalizedMessage());
+            }
+        });
+    }
+
+    public void sendPushNotifs(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiClient.FIREBASE_PUSH)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RegisterAPI api = retrofit.create(RegisterAPI.class);
+
+        Notif notif = new Notif();
+        notif.setTitle("ALERT");
+        notif.setText("See Calamity");
+
+        PushNotif pushNotif = new PushNotif();
+        pushNotif.setTo("/topics/alert");
+        pushNotif.setNotif(notif);
+
+        Call<ResponseBody> call = api.pushNotif(pushNotif);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()){
+                    Log.d(TAG, "onResponse: " + response.body().toString());
+                    Toast.makeText(getApplicationContext(), "NEW ALERT NOTIFICATION", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getLocalizedMessage());
             }
         });

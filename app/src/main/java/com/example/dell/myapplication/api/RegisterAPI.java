@@ -5,6 +5,8 @@ import com.example.dell.myapplication.model.AlertMessage;
 import com.example.dell.myapplication.model.Crud;
 import com.example.dell.myapplication.model.Instruction;
 import com.example.dell.myapplication.model.Message;
+import com.example.dell.myapplication.model.Notif;
+import com.example.dell.myapplication.model.PushNotif;
 import com.example.dell.myapplication.model.Reports;
 import com.example.dell.myapplication.model.SafeExits;
 import com.example.dell.myapplication.model.Users;
@@ -14,9 +16,11 @@ import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -119,5 +123,10 @@ public interface RegisterAPI {
                               @Field("senderID") String senderID,
                               @Field("location") int location);
 
-
+    @Headers({"Authorization: key=AAAALsWTz_U:APA91bG_qRZxFeqTk5PcY3HEQbPTKHX44dJW8WGpej0CWraBT" +
+            "F05y6oOk4UZbZGMkiCM56nPKPJXMQsC6E8mmK7PQ7cxVkYQt9smQ1w" +
+            "Buls_tjxN9vrYe_5qfHUkN8G7kc_BDaWpr73-",
+            "Content-Type:application/json"})
+    @POST("send")
+    Call<ResponseBody> pushNotif(@Body PushNotif pushNotif);
 }

@@ -47,8 +47,8 @@ public class WelcomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_welcome, container, false);
 
-        textView = view.findViewById(R.id.txtW);
-        textView.setText("Welcome " + MainActivity.prefConfig.readName());
+       // textView = view.findViewById(R.id.txtW);
+       // textView.setText("Welcome " + MainActivity.prefConfig.readName());
         btnLogout = view.findViewById(R.id.btnLogout);
 
         btnLogout.setOnClickListener(new View.OnClickListener() {

@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -77,6 +78,11 @@ public class LoginFragment extends Fragment {
                                 // Get new Instance ID token
                                 String token = task.getResult().getToken();
 
+                                SharedPreferences sp = getContext().getSharedPreferences("your_prefs", MODE_PRIVATE);
+                                SharedPreferences.Editor editor1 = sp.edit();
+                                editor1.putString("token", token);
+                                editor1.apply();
+
                                 Log.d(TAG, "onComplete: " + token);
                             }
                         });
@@ -128,6 +134,7 @@ public class LoginFragment extends Fragment {
                         ft.commit();
 
                     } else if (value == 0) {
+                        subscribeToTopic();
                         Intent intent2 = new Intent(getActivity(), UsersActivity.class);
                         startActivity(intent2);
                     }
@@ -177,6 +184,17 @@ public class LoginFragment extends Fragment {
 
         UserName.setText("");
         UserPassword.setText("");
+    }
+
+    public void subscribeToTopic(){
+        Log.d(TAG, "subscribeToTopic: started");
+        FirebaseMessaging.getInstance().subscribeToTopic("alert")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(getContext(), "Subscribed", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
  

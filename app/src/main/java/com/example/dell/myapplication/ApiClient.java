@@ -7,6 +7,7 @@ public class ApiClient {
 
     public static final String BASE_URL ="https://isproj2b.benilde.edu.ph/BEAP/CRUD/";
     public static final String IMAGE_URL ="https://isproj2b.benilde.edu.ph/BEAP/storage/calamity_images/";
+    public static final String FIREBASE_PUSH = "https://fcm.googleapis.com/fcm/";
     public static Retrofit retrofit = null;
 
     public static  Retrofit getApiClient() {
